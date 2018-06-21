@@ -1,7 +1,5 @@
 #!/usr/bin/env node
 
-const fs = require('fs');
-const path = require('path');
 const faker = require('faker');
 
 const recordCount = 10000000;
@@ -70,25 +68,32 @@ const generateToStream = (generator, stream = null) => {
 
 const run = (args) => {
   let table, count, generator;
+
   switch (args.length) {
-  case 1: {
+  case 1:
     [ table, count ] = [ ...args, recordCount ];
     break;
-  }
-  case 2: {
+  case 2:
     [ table, count ] = args;
     break;
-  }
   default:
     console.error('Usage: generate-data.js TABLE [COUNT]');
     process.exit(1);
   }
 
   switch (table) {
-  case 'users': generator = generateUsers; break;
-  case 'photos': generator = generatePhotos; break;
-  case 'restaurants': generator = generateRestaurants; break;
-  case 'users_restaurants': generator = generateUsersRestaurants; break;
+  case 'users':
+    generator = generateUsers;
+    break;
+  case 'photos':
+    generator = generatePhotos;
+    break;
+  case 'restaurants':
+    generator = generateRestaurants;
+    break;
+  case 'users_restaurants':
+    generator = generateUsersRestaurants;
+    break;
   default:
     console.error(`Unknown table ${table}`);
     process.exit(1);

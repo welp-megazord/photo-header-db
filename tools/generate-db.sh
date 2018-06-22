@@ -53,21 +53,22 @@ create table users_restaurants (
 );
 EOF
 
-echo -e "\ncopy users from stdin;" >> "${destination}"
-tools/generate-data.js users $record_count >> "${destination}"
-echo "\\." >> "${destination}"
 
 echo -e "\ncopy restaurants from stdin;" >> "${destination}"
 tools/generate-data.js restaurants $record_count >> "${destination}"
 echo "\\." >> "${destination}"
 
-echo -e "\ncopy photos from stdin;" >> "${destination}"
-tools/generate-data.js photos $small_table_record_count >> "${destination}"
-echo "\\." >> "${destination}"
+# echo -e "\ncopy users from stdin;" >> "${destination}"
+# tools/generate-data.js users $record_count >> "${destination}"
+# echo "\\." >> "${destination}"
 
-echo -e "\ncopy users_restaurants from stdin;" >> "${destination}"
-tools/generate-data.js users_restaurants $small_table_record_count >> "${destination}"
-echo "\\." >> "${destination}"
+# echo -e "\ncopy photos from stdin;" >> "${destination}"
+# tools/generate-data.js photos $small_table_record_count >> "${destination}"
+# echo "\\." >> "${destination}"
+
+# echo -e "\ncopy users_restaurants from stdin;" >> "${destination}"
+# tools/generate-data.js users_restaurants $small_table_record_count >> "${destination}"
+# echo "\\." >> "${destination}"
 
 cat << EOF >> "${destination}"
 

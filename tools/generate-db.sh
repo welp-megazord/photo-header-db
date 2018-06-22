@@ -16,7 +16,9 @@ else
     small_table_record_count=$record_count
 fi
 
-cat << EOF > "${destination}"
+echo -e "-- This file is generated programmatically\n" > "${destination}"
+
+cat << EOF >> "${destination}"
 drop table if exists photos;
 drop table if exists users_restaurants;
 drop table if exists users;
@@ -84,4 +86,6 @@ alter table users_restaurants add constraint users_restaurants_pkey primary key 
 alter table users_restaurants add constraint users_restaurants_user_id_fkey foreign key (user_id) references users (id);
 
 alter table users_restaurants add constraint users_restaurants_restaurant_id_fkey foreign key (restaurant_id) references restaurants (id);
+
+create unique index user_name_idx on users (name);
 EOF

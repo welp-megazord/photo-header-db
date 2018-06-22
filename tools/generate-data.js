@@ -5,9 +5,31 @@ const faker = require('faker');
 const recordCount = 10000000;
 const addressFormat = '{{address.streetAddress}}, {{address.city}} {{address.stateAbbr}}, {{address.zipCode}}';
 
+const unique = (fn) => {
+  const seen = new Set();
+  return (...args) => {
+    const result = fn(...args);
+    if (!seen.has(result)) {
+      seen.add(result);
+      return result;
+    }
+    const tries = 50;
+    const start = Math.floor(Math.random() * 100);
+    for (let i = 1; i <= tries; i++) {
+      const value = result + '_' + (start + i);
+      if (!seen.has(value)) {
+        seen.add(value);
+        return value;
+      }
+    }
+    throw new Error(`Failed to generate unique value after ${tries} tries`);
+  };
+};
+
 const generateUsers = function*(count) {
+  const userName = unique(faker.internet.userName);
   for (let i = 0; i < count; i++) {
-    yield [i + 1, faker.internet.userName()];
+    yield [i + 1, userName()];
   }
 };
 

@@ -53,7 +53,6 @@ create table users_restaurants (
 );
 EOF
 
-
 echo -e "\ncopy restaurants from stdin;" >> "${destination}"
 tools/generate-data.js restaurants $record_count >> "${destination}"
 echo "\\." >> "${destination}"

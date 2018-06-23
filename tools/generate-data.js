@@ -51,7 +51,7 @@ const generateRestaurants = function*(count) {
       i + 1,
       faker.company.companyName(),
       faker.fake(addressFormat),
-      faker.phone.phoneNumber(),
+      faker.phone.phoneNumber('(###) ###-####'),
       faker.internet.url(),
       faker.internet.url(),
       faker.lorem.words()

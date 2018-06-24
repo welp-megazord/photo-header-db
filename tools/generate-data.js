@@ -48,7 +48,7 @@ const generatePhotos = function*(count) {
 const generateRestaurants = function*(count) {
   for (let i = 0; i < count; i++) {
     yield [
-      i + 1,
+      // i + 1,
       faker.company.companyName(),
       faker.fake(addressFormat),
       faker.phone.phoneNumber('(###) ###-####'),
